@@ -23,7 +23,6 @@ const routes: Routes = [
   { path: 'view-events', component: ViewEventsComponent },  
   { path: 'booking-details', component: BookingDetailsComponent },   
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
-
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

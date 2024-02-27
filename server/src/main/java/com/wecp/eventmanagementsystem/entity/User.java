@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,10 @@ public class User {
     private String password;
     private String email;
     private String role;
+
+    
+    public User() {
+    }
 
     public Long getUserID() {
         return userID;
@@ -29,6 +34,7 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println("Inside SetUserName");
     }
 
     public String getPassword() {

@@ -80,6 +80,9 @@ noSpaceValidations(control: AbstractControl): ValidationErrors | null {
         }
       )
     }
+    else{
+      this.itemForm.markAllAsTouched();
+    }
   }
  
  
