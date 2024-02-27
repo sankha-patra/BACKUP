@@ -27,7 +27,7 @@ export class HttpService {
   }
   updateEvent(newEvent:any,eventId:any):Observable<any> {
    //complete this function
-   return null;
+   return this.http.put<Event>(`${this.serverName}/api/staff/update-setup/${eventId}`,newEvent);
   }
   // assignDriver(driverid: any, cargoId: any): Observable<any> {
   //  //complete this function
