@@ -56,12 +56,12 @@ export class AddResourceComponent implements OnInit {
      this.httpService.addResource(this.itemForm.value).subscribe(
       (res)=>{
         this.addResourceSuccess$ = of('Resource added successfully!');
+        this.getResources();
       },
    (error) => {
         this.addResourceError$ = of('Unable to add resource');
       }
-   )
-   this.getResources();
+   );
  
   }else{
     this.markFormGroupTouched(this.itemForm);

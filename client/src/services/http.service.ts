@@ -32,6 +32,9 @@ export class HttpService {
    //complete this function
    return this.http.get(`${this.serverName}/api/planner/resources`);
   }
+  addAllocateResource(data:any):Observable<any>{
+    return this.http.post(`${this.serverName}/api/planner/allocate-resources`,data,{params: {eventId:data.event.eventID, resourceId: data.resource.resourceID}})
+  }
 
   addResource(data : any): Observable<any> {
     return this.http.post(`${this.serverName}/api/planner/resource`,data);
@@ -39,7 +42,7 @@ export class HttpService {
 
   getEvents():Observable<any> {
   //complete this function
-  return null;
+  return this.http.get(`${this.serverName}/api/planner/events`);
   }
   addEvent(details:any):Observable<any> {
   //complete this function
