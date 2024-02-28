@@ -1,30 +1,30 @@
 <div *ngIf="isUpdate">
-<div class="d-flex justify-content-between mt-4">
-    <h2 class="mb-0">Manage Events</h2>
-</div>
-<div class="card">
+    <div class="d-flex justify-content-between mt-4">
+        <h2 class="mb-0">Manage Events</h2>
+    </div>
+    <div class="card">
         <div class="card-header">
             <label for="content" class="form-label ">Event ID</label>
         </div>
-<div class="row mt-3">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="mb-3">
-                        <!-- <label for="content" class="form-label ">Event ID</label> -->
-                        <!-- //input for search input -->
-                        <input type="text" id="content" name="content" placeholder="Please enter Sr# or Title" [(ngModel)]="inputMessage">
+        <div class="row mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="mb-3">
+                            <!-- <label for="content" class="form-label ">Event ID</label> -->
+                            <!-- //input for search input -->
+                            <input type="text" id="content" name="content" placeholder="Please enter Sr# or Title" [(ngModel)]="inputMessage">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <!-- <br> -->
-                    <!-- create button here and call this function searchEvent() -->
-                    <button class="btn btn-outline-dark mt-1" (click)="searchEvent()" >Search</button>
+                    <div class="col-md-2">
+                        <!-- <br> -->
+                        <!-- create button here and call this function searchEvent() -->
+                        <button class="btn btn-outline-dark mt-1" (click)="searchEvent()">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- <form *ngIf="isUpdate" class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
                 <div class="row">
@@ -96,7 +96,6 @@
                         <th>Location</th>
                         <th>status</th>
                         <th>Action</th>
- 
                     </tr>
                 </thead>
                 <tbody>
@@ -107,10 +106,9 @@
                         <td>{{item.dateTime | date:'dd-MMM-yyyy'}}</td>
                         <td>{{item.location}}</td>
                         <td>{{item.status}}</td>
- 
+
                         <td>
-                            <button (click)="edit(item)" *ngIf="item.eventID"
-                                class="btn btn-warning">Update</button>
+                            <button (click)="edit(item)" *ngIf="item.eventID" class="btn btn-warning">Update</button>
                         </td>
                     </tr>
                 </tbody>
@@ -126,7 +124,7 @@
 
 <!-- New update form -->
 
-<div class="conatainer2" [hidden] = "isUpdate">
+<div class="conatainer2" [hidden]="isUpdate">
 
     <div class="banner">
         <h2>Update Event</h2>
@@ -134,7 +132,7 @@
     <div class="form">
         <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
             <div>
-               
+
                 <div class="mb-3">
                     <label for="name" class="form-label ">Title :</label>
                     <!-- create input with formControlName="name"  and with validation  -->
@@ -186,8 +184,7 @@
                     <!-- create select with formControlName="status" and validation -->
                     <select formControlName="user" class="form-control">
                         <option value="">Choose user</option>
-                        <option [ngValue]="event.user" *ngFor="let event of eventObj$ | async">{{event.user.userID}} {{event.user.username}}</option>
-                        
+                        <option [ngValue]="event?.user" selected>{{event?.user?.userID}} {{event?.user?.username}}</option>
                     </select>
                     <!-- <option value="null">Choose Status</option>
                   <option value="Initiated">Initiated</option>
@@ -195,31 +192,18 @@
                 </div>
                 <div class="mb-5">
                     <br>
-                    <button type="submit" class="btn btn-success"  >Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
-                <!-- <ng-container >
-                    <div *ngIf="success$ | async as success" class="alert alert-success">
-                        {{success}}
-                    </div>
-                    <div *ngIf="error$ | async as error" class="alert alert-danger">
-                        {{error}}
-                    </div>
-                </ng-container> -->
             </div>
         </form>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<ng-container *ngIf="isUpdate">
+    <div *ngIf="responseMsg$ | async as success" class="alert alert-success">
+        {{success}}
+    </div>
+    <div *ngIf="errorMsg$ | async as error" class="alert alert-danger">
+        {{error}}
+    </div>
+</ng-container>

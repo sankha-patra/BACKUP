@@ -34,7 +34,7 @@ export class CreateEventComponent implements OnInit {
       dateTime:['',[Validators.required]],
       location:['',[Validators.required]],
       status:['',[Validators.required]],
-      user:['',Validators.required]
+      user:['',[Validators.required]]
     });
   }
   ngOnInit(): void {
