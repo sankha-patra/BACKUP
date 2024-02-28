@@ -20,6 +20,7 @@ export class AddResourceComponent implements OnInit {
 
   showMessage: any;
   responseMessage: any;
+<<<<<<< HEAD
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
     {
       this.itemForm = this.formBuilder.group({
@@ -28,17 +29,27 @@ export class AddResourceComponent implements OnInit {
         availability: [this.formModel.availability,[ Validators.required]]
        
     });
+=======
+  constructor(public router:Router,private formBuilder: FormBuilder, private authService:AuthService) 
+    {
+      // this.itemForm = init this form
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
 
    
   }
   ngOnInit(): void {
+<<<<<<< HEAD
     this.getResources();
+=======
+  
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     
   }
 
  
   onSubmit()
   {
+<<<<<<< HEAD
       debugger;
       if (this.itemForm.valid) {
         this.showError = false;
@@ -55,11 +66,16 @@ export class AddResourceComponent implements OnInit {
       } else {
         this.itemForm.markAllAsTouched();
       }
+=======
+   //complete this function by calling api 
+   
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     }
     
   
 
   getResources() {
+<<<<<<< HEAD
     this.resourceList=[];
     this.httpService.GetAllResources().subscribe((data: any) => {
       this.resourceList=data;
@@ -70,6 +86,9 @@ export class AddResourceComponent implements OnInit {
       this.errorMessage = "An error occurred while logging in. Please try again later.";
       console.error('Login error:', error);
     });;
+=======
+     //complete this function 
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
   
 }

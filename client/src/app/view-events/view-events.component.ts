@@ -12,7 +12,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ViewEventsComponent implements OnInit {
 
+<<<<<<< HEAD
   itemForm: FormGroup; 
+=======
+  itemForm:FormGroup; 
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   formModel:any={status:null};
   showError:boolean=false;
   errorMessage:any;
@@ -24,6 +28,7 @@ export class ViewEventsComponent implements OnInit {
   isUpdate: any=false;;
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
     {
+<<<<<<< HEAD
       this.itemForm = this.formBuilder.group({
         title: [this.formModel.title,[ Validators.required]],
         description: [this.formModel.description,[ Validators.required]],
@@ -33,6 +38,11 @@ export class ViewEventsComponent implements OnInit {
        
     });
 
+=======
+      this.itemForm =this.formBuilder.group({
+        
+      })
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
    
   }
   ngOnInit(): void {
@@ -40,6 +50,7 @@ export class ViewEventsComponent implements OnInit {
   
   }
   searchEvent() {
+<<<<<<< HEAD
     debugger;
     if(this.formModel.eventID!=null)
     {
@@ -54,12 +65,17 @@ export class ViewEventsComponent implements OnInit {
         console.error('Login error:', error);
       });;
     }
+=======
+  //complete this function
+    
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   
   }
 
  
   onSubmit()
   {
+<<<<<<< HEAD
     if(this.itemForm.valid)
     {
       if (this.itemForm.valid) {
@@ -82,17 +98,24 @@ export class ViewEventsComponent implements OnInit {
     else{
       this.itemForm.markAllAsTouched();
     }
+=======
+    //complete this function
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
   edit(val:any)
   {
     this.isUpdate=true;
     let dateTime=new Date(val.dateTime);
     this.itemForm.patchValue({
+<<<<<<< HEAD
       title:val.title,
       description:val.description,
       dateTime:dateTime.toISOString().substring(0,10),
       location:val.location,
       status:val.status
+=======
+    //complete this function
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
 
     })
   }

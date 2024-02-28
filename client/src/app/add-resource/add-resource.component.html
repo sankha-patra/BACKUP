@@ -13,6 +13,7 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="content" class="form-label ">Name</label>
+<<<<<<< HEAD
                             <input type="content" name ="name"formControlName="name" [(ngModel)]="formModel.name" class="form-control" id="name" placeholder="name">
                             <div *ngIf="itemForm.controls['name'].invalid && (itemForm.controls['name'].dirty || itemForm.controls['name'].touched)"
                             class="ng-dirty">
@@ -20,11 +21,16 @@
                               <span class="text-danger">Please Enter name .</span>
                             </span>
                           </div>
+=======
+                          <!-- create input with formControlName="name"  and with validation  -->
+                       
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
                           </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="type" class="form-label ">Type</label>
+<<<<<<< HEAD
                             <input type="type" name="type"  formControlName="type" [(ngModel)]="formModel.type" class="form-control" id="type" placeholder="type">
                             <div *ngIf="itemForm.controls['type'].invalid && (itemForm.controls['type'].dirty || itemForm.controls['type'].touched)"
                             class="ng-dirty">
@@ -32,6 +38,10 @@
                               <span class="text-danger">Please Enter type .</span>
                             </span>
                           </div>
+=======
+                   <!-- create input with formControlName="type"  and with validation  -->
+                         
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
                           </div>
                     </div>
                     <div class="col-md-3">
@@ -39,6 +49,7 @@
                          
                                 <label class="form-label">Availability:</label>
                                 <div class="form-check">
+<<<<<<< HEAD
                                   <input class="form-check-input" type="radio" name="availability" id="availability-available" value="true" formControlName="availability">
                                   <label class="form-check-label" for="availability-available">Available</label>
                                 </div>
@@ -53,6 +64,16 @@
                                   <span class="text-danger">Please Choose Availability .</span>
                                 </span>
                               </div>
+=======
+                                   <!-- create radio with formControlName="availability"  and with validation  -->
+                                  <label class="form-check-label" for="availability-available">Available</label>
+                                </div>
+                                <div class="form-check">
+                                    <!-- create radio with formControlName="availability"  and with validation  -->
+                                  <label class="form-check-label" for="availability-unavailable">Unavailable</label>
+                                </div>
+
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
                              
                           </div>
                     </div>
@@ -77,7 +98,11 @@
 
   <div class="row mt-3">
     <div class="card">
+<<<<<<< HEAD
         <div class="card-header">Resource  Information</div>
+=======
+        <div class="card-header">Hospital Information</div>
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -93,6 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                     <tr *ngFor="let Resource of resourceList">
                       <td>{{Resource.resourceID}}</td>
                         <td>{{Resource.name}}</td>
@@ -100,6 +126,16 @@
                         <td>
                             <span *ngIf="Resource.availability">Available</span>
                             <span *ngIf="!Resource.availability">Not Available</span>
+=======
+                  <!-- //compelte table Information -->
+                    <tr >
+                      <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <span >Available</span>
+                            <span >Not Available</span>
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
                   
 
                         </td>

@@ -1,12 +1,17 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+<<<<<<< HEAD
   <a class="navbar-brand" href="#">Event Management</a>
+=======
+  <a class="navbar-brand" href="#">Angular Event Managment System </a>
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
+<<<<<<< HEAD
         <a class="nav-link" *ngIf="roleName === 'PLANNER'" [routerLink]="['/create-event']">Create Event</a>
       </li>
       <li class="nav-item">
@@ -23,16 +28,34 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" *ngIf="roleName === 'CLIENT'" [routerLink]="['/booking-details']">View Booking</a>
+=======
+        //add nav link here
+
+      </li>
+      <li class="nav-item">
+        //add nav link here
+      </li>
+      <li class="nav-item">
+       //add nav link here
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
       </li>
     </ul>
  
     <!-- Login/Logout buttons -->
     <ul class="navbar-nav">
+<<<<<<< HEAD
       <li *ngIf="!IsLoggin" class="nav-item">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
       <li *ngIf="IsLoggin" class="nav-item">
         <a class="nav-link" (click)="logout()" [routerLink]="['/login']">Logout</a>
+=======
+      <li  class="nav-item">
+        //add nav link here
+      </li>
+      <li class="nav-item">
+        //add nav link here
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
       </li>
     </ul>
   </div>

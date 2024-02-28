@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class Allocation {
+<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long allocationID;
@@ -17,6 +18,18 @@ public class Allocation {
 
     @OneToOne
     @JoinColumn(name = "resourceID")
+=======
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long allocationID;
+
+
+   
+    private Event event;
+
+    
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     private Resource resource;
 
     private int quantity;

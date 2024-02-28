@@ -19,8 +19,12 @@ export class LoginComponent implements OnInit {
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
     {
       this.itemForm = this.formBuilder.group({
+<<<<<<< HEAD
         username: [this.formModel.username,[ Validators.required]],
         password: [this.formModel.password,[ Validators.required]],
+=======
+        //compelete this 
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
        
     });
   }
@@ -28,6 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onLogin() {
+<<<<<<< HEAD
   if (this.itemForm.valid) {
     this.showError = false;
     this.httpService.Login(this.itemForm.value).subscribe((data: any) => {
@@ -56,10 +61,17 @@ export class LoginComponent implements OnInit {
   } else {
     this.itemForm.markAllAsTouched();
   }
+=======
+  //compelete this 
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
 }
 
 registration()
   {
+<<<<<<< HEAD
     this.router.navigateByUrl('/registration');
+=======
+     //compelete this 
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
 }

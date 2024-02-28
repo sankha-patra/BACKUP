@@ -5,11 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LoginResponse {
     private String token;
+<<<<<<< HEAD
     private String username;
     private String email;
     private String role;
 
     
+=======
+
+    private String username;
+
+    private String email;
+
+    private String role;
+
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     @JsonCreator
     public LoginResponse(@JsonProperty("token") String token,
                          @JsonProperty("username") String username,

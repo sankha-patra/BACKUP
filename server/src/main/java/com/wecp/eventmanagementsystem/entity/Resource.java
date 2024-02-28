@@ -5,8 +5,14 @@ import javax.persistence.*;
 
 @Entity
 public class Resource {
+<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+>>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
     private Long resourceID;
 
     private String name;
