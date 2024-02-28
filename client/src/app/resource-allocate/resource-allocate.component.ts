@@ -21,7 +21,6 @@ export class ResourceAllocateComponent implements OnInit {
   eventList: any=[];
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
     {
-<<<<<<< HEAD
       this.itemForm = this.formBuilder.group({
         quantity: [this.formModel.quantity,[ Validators.required]],
         eventId: [this.formModel.eventId,[ Validators.required]],
@@ -34,18 +33,10 @@ export class ResourceAllocateComponent implements OnInit {
   ngOnInit(): void {
     this.getResources();
     this.getEvent();    
-=======
-      // this.itemForm =init form 
-   
-  }
-  ngOnInit(): void {
-
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
  
   onSubmit()
   {
-<<<<<<< HEAD
       debugger;
       if (this.itemForm.valid) {
         this.showError = false;
@@ -89,17 +80,6 @@ export class ResourceAllocateComponent implements OnInit {
       this.errorMessage = "An error occurred while logging in. Please try again later.";
       console.error('Login error:', error);
     });;
-=======
-    //complete this function
-  }
-    
-    getEvent() {
-     //complete this function
-    }
-
-  getResources() {
-     //complete this function
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
   
 }

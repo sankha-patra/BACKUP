@@ -22,12 +22,7 @@ const routes: Routes = [
   { path: 'resource-allocate', component: ResourceAllocateComponent },  
   { path: 'view-events', component: ViewEventsComponent },  
   { path: 'booking-details', component: BookingDetailsComponent },   
-<<<<<<< HEAD
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
-=======
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

@@ -20,11 +20,7 @@ export class BookingDetailsComponent implements OnInit {
   showMessage: any;
   responseMessage: any;
   isUpdate: any=false;;
-<<<<<<< HEAD
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
-=======
-  constructor(public router:Router, private formBuilder: FormBuilder, private authService:AuthService) 
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
    {
       
   }
@@ -33,7 +29,6 @@ export class BookingDetailsComponent implements OnInit {
   
   }
   searchEvent() {
-<<<<<<< HEAD
     debugger;
     if(this.formModel.eventID!=null)
     {
@@ -48,9 +43,6 @@ export class BookingDetailsComponent implements OnInit {
         console.error('Login error:', error);
       });;
     }
-=======
-//complete this function
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   
   }
 

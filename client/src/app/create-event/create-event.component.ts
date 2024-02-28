@@ -21,7 +21,6 @@ export class CreateEventComponent implements OnInit {
 
   showMessage: any;
   responseMessage: any;
-<<<<<<< HEAD
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
     {
       this.itemForm = this.formBuilder.group({
@@ -32,11 +31,6 @@ export class CreateEventComponent implements OnInit {
         status: [this.formModel.status,[ Validators.required]], 
        
     });
-=======
-  constructor(public router:Router, private formBuilder: FormBuilder, private authService:AuthService) 
-    {
-      // this.itemForm = inti this form 
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
 
    
   }
@@ -45,7 +39,6 @@ export class CreateEventComponent implements OnInit {
     this.getEvent();
   }
   getEvent() {
-<<<<<<< HEAD
     this.eventList=[];
     this.httpService.GetAllevents().subscribe((data: any) => {
       this.eventList=data;
@@ -56,15 +49,11 @@ export class CreateEventComponent implements OnInit {
       this.errorMessage = "An error occurred.. Please try again later.";
       console.error('Login error:', error);
     });;
-=======
-//compete this function
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
 
  
   onSubmit()
   {
-<<<<<<< HEAD
     if(this.itemForm.valid)
     {
       if (this.itemForm.valid) {
@@ -86,9 +75,6 @@ export class CreateEventComponent implements OnInit {
     else{
       this.itemForm.markAllAsTouched();
     }
-=======
-   //compete this function
->>>>>>> ef1f4d60e0f1c58fd62db8cccc9ef1809da6fae0
   }
 
   
