@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
-import { FormsModule } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-// import { HttpService } from '../../services/http.service';
-// import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -15,73 +12,90 @@ import { Observable, of } from 'rxjs';
 })
 export class ViewEventsComponent implements OnInit {
 
-  itemForm: FormGroup;
-  formModel: any = { status: null };
-  showError: boolean = false;
-  errorMessage: any;
-  eventObj$: Observable<any> = of([]);
-  assignModel: any = {};
+  itemForm: FormGroup; 
+  formModel:any={status:null};
+  showError:boolean=false;
+  errorMessage:any;
+  eventObj:any=[];
+  assignModel: any={};
 
   showMessage: any;
   responseMessage: any;
-  isUpdate: any = true;
-
-  inputMessage: string = '';
-  userList$: Observable<any> = of([]);
-  errorMsg$: Observable<String> = of('');
-  responseMsg$: Observable<String> = of('');
-  event:any;
-  constructor(public router: Router, private formBuilder: FormBuilder, private httpService: HttpService) {
-    // this.itemForm =complete this form init
-    this.itemForm = formBuilder.group({
-      eventID: [''],
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      dateTime: ['', [Validators.required]],
-      location: ['', [Validators.required]],
-      status: ['', [Validators.required]],
-      user: ['', [Validators.required]]
+  isUpdate: any=false;;
+  constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
+    {
+      this.itemForm = this.formBuilder.group({
+        title: [this.formModel.title,[ Validators.required]],
+        description: [this.formModel.description,[ Validators.required]],
+        dateTime: [this.formModel.dateTime,[ Validators.required]],
+        location: [this.formModel.location,[ Validators.required]], 
+        status: [this.formModel.status,[ Validators.required]], 
+       
     });
+
+   
   }
   ngOnInit(): void {
 
-
+  
   }
   searchEvent() {
-    //complete this function
-    this.eventObj$ = this.httpService.getEventById(this.inputMessage);
+    debugger;
+    if(this.formModel.eventID!=null)
+    {
+      this.isUpdate=false;
+      this.httpService.GetEventdetails(this.formModel.eventID).subscribe((data: any) => {
+        this.eventObj=data;
+        console.log(this.eventObj);
+      }, error => {
+        // Handle error
+        this.showError = true;
+        this.errorMessage = "An error occurred.. Please try again later.";
+        console.error('Login error:', error);
+      });;
+    }
+  
   }
 
-
-  onSubmit() {
-    //complete this function
-    if (this.itemForm.valid) {
-      console.log(this.inputMessage);
-      this.httpService.updateEvent(this.itemForm.value, this.inputMessage).subscribe(
-        (res: any) => {
-          this.responseMsg$ = of('Event updated successfully');
-          this.searchEvent();
-        },
-        (error: any) => {
-          this.errorMsg$ = of('Unable to update event');
-        }
-      )
-      this.isUpdate = true;
-    }else{
+ 
+  onSubmit()
+  {
+    if(this.itemForm.valid)
+    {
+      if (this.itemForm.valid) {
+        this.showError = false;
+        this.httpService.updateEvent(this.itemForm.value, this.formModel.eventID).subscribe((data: any) => {
+          this.itemForm.reset();
+         this.isUpdate=false;
+          this.showMessage=true;
+          this.responseMessage='Save Successfully';
+        }, error => {
+          // Handle error
+          this.showError = true;
+          this.errorMessage = "An error occurred while created in. Please try again later.";
+          console.error('Login error:', error);
+        });;
+      } else {
+        this.itemForm.markAllAsTouched();
+      }
+    }
+    else{
       this.itemForm.markAllAsTouched();
     }
   }
-  edit(val: any) {
-    this.isUpdate = false;
-    let dateTime = new Date(val.dateTime);
-    // this.itemForm.patchValue({
-    // //complete this function
-    // })
+  edit(val:any)
+  {
+    this.isUpdate=true;
+    let dateTime=new Date(val.dateTime);
+    this.itemForm.patchValue({
+      title:val.title,
+      description:val.description,
+      dateTime:dateTime.toISOString().substring(0,10),
+      location:val.location,
+      status:val.status
 
-    this.eventObj$.subscribe((data: any) => {
-      this.event = data[0];
-      this.itemForm.patchValue(data[0]);
-      console.log(data);
-    });
+    })
   }
+
+  
 }

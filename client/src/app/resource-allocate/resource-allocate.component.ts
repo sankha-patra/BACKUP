@@ -1,85 +1,85 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
 import { HttpService } from '../../services/http.service';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-resource-allocate',
   templateUrl: './resource-allocate.component.html',
   styleUrls: ['./resource-allocate.component.scss']
 })
-export class ResourceAllocateComponent {
-  itemForm: FormGroup;
-  formModel: any = { status: null };
-  showError: boolean = false;
-  errorMessage: string = '';
-  assignModel: any = {};
+export class ResourceAllocateComponent implements OnInit {
+  itemForm: FormGroup; 
+  formModel:any={status:null};
+  showError:boolean=false;
+  errorMessage:any;
+  resourceList:any=[];
+  assignModel: any={};
 
-  showMessage: boolean = false;
-  responseMessage: string ='';
-  eventList$: Observable<any> = of([]);
-  resourceList$: Observable<any> = of([]);
-  filteredResourceList$:Observable<any> = of([]);
+  showMessage: any;
+  responseMessage: any;
+  eventList: any=[];
+  constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService) 
+    {
+      this.itemForm = this.formBuilder.group({
+        quantity: [this.formModel.quantity,[ Validators.required]],
+        eventId: [this.formModel.eventId,[ Validators.required]],
+        resourceId: [this.formModel.resourceId,[ Validators.required]]
+       
+    });
 
-
-
-  constructor(public router: Router, private formBuilder: FormBuilder, private httpService: HttpService) {
-    this.itemForm = this.formBuilder.group({
-      resource: ['', [Validators.required, this.notNegitive]],
-      quantity: ['', [Validators.required, this.notNegitive]],
-      event: ['', [Validators.required]]
-
-    })
-
+   
   }
   ngOnInit(): void {
-    this.getEvent();
     this.getResources();
-    this.filteredResourceList$ = this.resourceList$.pipe(
-      map((arr:any)=>{
-        return arr.filter(r => r.availability)
-      })
-    );
+    this.getEvent();    
   }
-
-  notNegitive(control: AbstractControl): ValidationErrors | null {
-
-
-    if (control.value < 0) {
-      return { nNegitive: true };
-    } else {
-      return null;
-    }
-  }
-
-  onSubmit() {
-    //complete this function
-    if(this.itemForm.valid){
-      this.httpService.addAllocateResource(this.itemForm.value).subscribe(
-        (data: any)=>{
-          this.showMessage = true;
-          this.responseMessage = 'Allocation successfully done';
-        },
-        (error: any)=>{
+ 
+  onSubmit()
+  {
+      debugger;
+      if (this.itemForm.valid) {
+        this.showError = false;
+        this.httpService.allocateResources(this.itemForm.controls['eventId'].value,this.itemForm.controls['resourceId'].value, this.itemForm.value).subscribe((data: any) => {
+          this.itemForm.reset();
+          this.showMessage=true;
+          this.responseMessage='Save Successfully';
+          
+        }, error => {
+          // Handle error
           this.showError = true;
-          this.errorMessage = 'Unable to allocate resource.';
-        }
-      );
+          this.errorMessage = "An error occurred while logging in. Please try again later.";
+          console.error('Login error:', error);
+        });;
+      } else {
+        this.itemForm.markAllAsTouched();
+      }
     }
-  }
-
-  getEvent() {
-    //complete this function
-    this.eventList$ = this.httpService.getEvents();
-  }
+    
+    getEvent() {
+      this.eventList=[];
+      this.httpService.GetAllevents().subscribe((data: any) => {
+        this.eventList=data;
+        console.log(this.eventList);
+      }, error => {
+        // Handle error
+        this.showError = true;
+        this.errorMessage = "An error occurred while logging in. Please try again later.";
+        console.error('Login error:', error);
+      });;
+    }
 
   getResources() {
-    //complete this function
-    this.resourceList$ = this.httpService.getResources();
-    this.filteredResourceList$ = this.resourceList$;
+    this.resourceList=[];
+    this.httpService.GetAllResources().subscribe((data: any) => {
+      this.resourceList=data;
+      console.log(this.resourceList);
+    }, error => {
+      // Handle error
+      this.showError = true;
+      this.errorMessage = "An error occurred while logging in. Please try again later.";
+      console.error('Login error:', error);
+    });;
   }
-
-
+  
 }

@@ -25,15 +25,14 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
       AddResourceComponent,
       ResourceAllocateComponent,
       ViewEventsComponent,
-      BookingDetailsComponent,
-      RegistrationComponent
+      BookingDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule 
   ],
   providers: [HttpService,HttpClientModule ],
   bootstrap: [AppComponent]

@@ -12,29 +12,33 @@ export class AuthService {
 
   // Method to save token received from login
   saveToken(token: string) {
-    //complete this function
-   //complete this function
+    this.token = token;
+    this.isLoggedIn = true;
+    // Optionally, you can save the token to local storage or a cookie for persistence
+    localStorage.setItem('token', token);
   }
    SetRole(role:any)
   {
-   //complete this function
+    localStorage.setItem('role',role);
   }
   get getRole ():string|null
   {
-   //complete this function
-   return null;
+    return localStorage.getItem('role');
   }
   // Method to retrieve login status
   get getLoginStatus(): boolean {
   
-     //complete this function
-   return true;
+      return !!localStorage.getItem('token');
+   
   }
   getToken(): string | null {
- //complete this function
- return null;
+   this.token= localStorage.getItem('token');
+    return this.token;
   }
   logout(){
-  //complete this function
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+     this.token=null;
+     this.isLoggedIn=false
    }
 }

@@ -1,74 +1,62 @@
-<div class="d-flex justify-content-center mt-4" >
+<div class="d-flex justify-content-between mt-4">
   <h2 class="mb-0">Manage Resource Allocation</h2>  
 
 </div>
-<div class="row mt-3 justify-content-center">
-  <div class="card justify-content-center border border-dark shadow-lg" >
-      <h4 class="card-header   text-white" style="text-align: center; background-color:#132257;">
+<div class="row mt-3">
+  <div class="card">
+      <div class="card-header">
       Add Resource Allocation
-      </h4>
+        </div>
       <div class="card-body">
           <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-md-3">
                   <div class="mb-3">
-                    <label for="event" class="form-label mt-1" style="font-weight: bold;">Event</label>
-                    <br>
-                       <!-- create select with formControlName="eventId" and validation -->
-                       <!-- <select formControlName="eventId">
-                          <option value="">Choose Event</option>
-                          <option *ngFor="let event of event$ | async" [ngValue]="eventId">
-                            {{ event.eventId }}
-                          </option>
-                      </select> -->
-                      <select formControlName="event" >
-                        <option  value="">Choose Event</option>
-                        <option *ngFor="let event of eventList$|async" [ngValue]="event">{{event.eventID}} {{event.title}}</option>
-          
-                      </select>
-                      <div *ngIf="itemForm.get('event')?.hasError('required') && itemForm.get('event')?.touched"
-                      class="text-danger">Event ID is requried</div>
-             
-                 
+                    <label for="eventId" class="form-label">Event</label>
+                    <select name="eventId" formControlName="eventId" class="form-control" id="eventId">
+                      <option value="null">Choose Event</option>
+                      <option *ngFor="let val of eventList" [value]="val.eventID">{{val.title}}</option>
+                    </select>
+                    <div *ngIf="itemForm.controls['eventId'].invalid && (itemForm.controls['eventId'].dirty || itemForm.controls['eventId'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['eventId'].errors">
+                        <span class="text-danger">Please Choose Event.</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="mb-3">
-                    <label for="resource" class="form-label" style="font-weight: bold;">Resource</label>
-                    <br>
-                  <!-- create select with formControlName="resourceID" and validation -->
-                  <select formControlName="resource" >
-                    <option  value="">Choose Resource</option>
-                    
-                    <option *ngFor="let resource of filteredResourceList$ | async" [ngValue]="resource">{{resource.resourceID}}. {{resource.name}}</option>
-      
-                  </select>
-                          <div *ngIf="itemForm.get('resource')?.hasError('required') && itemForm.get('resource')?.touched"
-                              class="text-danger">Resource ID is requried</div>
-                              <div *ngIf="itemForm.get('resource')?.hasError('nNegitive') && itemForm.get('resource')?.touched"
-                              class="text-danger">Resource ID Should  not be negative </div>
-
-                   
+                    <label for="resourceId" class="form-label">Resource</label>
+                    <select name="resourceId" formControlName="resourceId" id="resourceId" class="form-control">
+                      <option value="null">Choose Resource</option>
+                      <option *ngFor="let val of resourceList" [value]="val.resourceID">{{val.name}}</option>
+                    </select>
+                    <div *ngIf="itemForm.controls['resourceId'].invalid && (itemForm.controls['resourceId'].dirty || itemForm.controls['resourceId'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['resourceId'].errors">
+                        <span class="text-danger">Please Choose Resource.</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="mb-3">
-                    <label for="quantity" class="form-label" style="font-weight: bold;">Quantity</label>
-                      <!-- create input with formControlName="quantity" and validation -->
-                      <input type="number" placeholder="Enter Quantity" id="quantity" formControlName="quantity" min="0" >
-                          <div *ngIf="itemForm.get('quantity')?.hasError('required') && itemForm.get('quantity')?.touched"
-                              class="text-danger">Quantity is requried</div>
-                              <div *ngIf="itemForm.get('quantity')?.hasError('nNegitive') && itemForm.get('quantity')?.touched"
-                              class="text-danger">Quantity Should not be Negative</div>
-
-                 
-               
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" name="quantity" formControlName="quantity" class="form-control" id="quantity"
+                      placeholder="Quantity">
+                    <div *ngIf="itemForm.controls['quantity'].invalid && (itemForm.controls['quantity'].dirty || itemForm.controls['quantity'].touched)"
+                      class="ng-dirty">
+                      <span *ngIf="itemForm.controls['quantity'].errors">
+                        <span class="text-danger">Please Enter Quantity.</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="d-grid">
                     <br>
-                    <button type="submit" class="btn btn-outline-dark mt-1" eventId="submit" style="font-weight: bold;">Submit</button>
+                    <button type="submit" class="btn btn-outline-dark mt-1" eventId="submit">Submit</button>
                   </div>
                 </div>
               </div>
@@ -79,7 +67,9 @@
             <div *ngIf="showError" class="alert alert-danger" role="alert">
               {{errorMessage}}
             </div>
-           
+            
       </div>
   </div>
 </div>
+
+
